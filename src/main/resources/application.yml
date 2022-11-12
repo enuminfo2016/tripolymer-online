@@ -1,0 +1,44 @@
+server:
+  port: ${PORT:${SERVER_PORT:8080}}
+spring:
+  application:
+    name: online-service
+  devtools:
+    add-properties: false
+  main:
+    allow-bean-definition-overriding: true
+  profiles:
+    active: performance
+
+logging:
+  level:
+    web: DEBUG
+    root: INFO
+
+---
+spring:
+  config:
+    activate:
+      on-profile: development
+  datasource:
+    url: jdbc:mysql://localhost:3306/tri_polymer_online
+    username: root
+    password: root
+  jpa:
+    show-sql: false
+    hibernate:
+      ddl-auto: update
+
+---
+spring:
+  config:
+    activate:
+      on-profile: performance
+  datasource:
+    url: jdbc:mysql://localhost:3306/tri_polymer_online
+    username: root
+    password: root
+  jpa:
+    show-sql: false
+    hibernate:
+      ddl-auto: update
